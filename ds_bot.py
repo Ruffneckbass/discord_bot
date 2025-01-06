@@ -48,7 +48,6 @@ ytdl_format_options = {
 
 ffmpeg_options = {
     'options': '-vn',
-    'executable': '/bin/ffmpeg'
 }
 
 
