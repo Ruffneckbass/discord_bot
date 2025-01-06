@@ -6,10 +6,3 @@ commands = [
     "apt-get update",
     "apt-get install -y gcc-13 g++-13 libc6 libc6-dev ffmpeg"
 ]
-
-[phases.nix]
-dependencies = [
-    "glibc-2.38",
-    "gcc",
-    "ffmpeg"
-]
