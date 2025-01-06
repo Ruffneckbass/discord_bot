@@ -4,7 +4,6 @@ python-dotenv
 pynacl
 ffmpeg
 aiohttp
-cloudconvert
 requests
 flask
 py-cord
