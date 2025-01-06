@@ -29,7 +29,7 @@ if cookies_content:
 else:
     print("Переменная YOUTUBE_COOKIES не найдена. Проверьте настройки Railway.")
 
-# Настройки для yt-dlp
+# Настройки yt-dlp
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
@@ -42,8 +42,9 @@ ytdl_format_options = {
     'no_warnings': True,
     'default_search': 'auto',
     'source_address': '0.0.0.0',
-    'cookiefile': 'youtube.txt' if os.path.exists("youtube.txt") else None,  # Используйте куки, если файл существует
+    'cookiefile': 'youtube.txt',  # Используйте cookies файл
 }
+
 
 ffmpeg_options = {
     'options': '-vn',
