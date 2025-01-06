@@ -12,9 +12,11 @@ CLOUDCONVERT_API_KEY = os.getenv("CLOUDCONVERT_API_KEY")
 # Инициализация CloudConvert API
 cloudconvert.configure(api_key=CLOUDCONVERT_API_KEY)
 
-# Базовая настройка бота
-intents = commands.Intents.default()
+# Настройка интентов
+intents = discord.Intents.default()
 intents.message_content = True
+
+# Настройка бота
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 async def convert_video_to_audio(video_url, output_file):
