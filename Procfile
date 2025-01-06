@@ -1,1 +1,1 @@
-web: apt-get update && apt-get install -y ffmpeg && python ds_bot.py
+web: sudo apt-get update && sudo apt-get install -y ffmpeg && python ds_bot.py
