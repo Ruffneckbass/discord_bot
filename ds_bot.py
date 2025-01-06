@@ -48,8 +48,8 @@ ytdl_format_options = {
 
 ffmpeg_options = {
     'options': '-vn',
+    'executable': '/usr/bin/ffmpeg'  # Это стандартный путь для FFmpeg в Linux
 }
-
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
