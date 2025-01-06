@@ -5,6 +5,13 @@ import yt_dlp as youtube_dl
 import os
 from dotenv import load_dotenv
 
+
+# Создание файла youtube.txt из переменной окружения
+cookies_content = os.getenv("YOUTUBE_COOKIES")
+if cookies_content:
+    with open("youtube.txt", "w") as f:
+        f.write(cookies_content)
+
 # Загрузка токена из файла .env
 load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
