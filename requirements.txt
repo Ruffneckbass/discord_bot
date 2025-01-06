@@ -6,3 +6,4 @@ ffmpeg
 aiohttp
 cloudconvert
 requests
+ffmpeg-python
