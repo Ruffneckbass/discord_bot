@@ -10,12 +10,13 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
 
-# Создание файла youtube.txt из переменной окружения
-
-COOKIES_CONTENT = os.getenv("YOUTUBE_COOKIES")
+cookies_content = os.getenv("YOUTUBE_COOKIES")
 if cookies_content:
     with open("youtube.txt", "w") as f:
         f.write(cookies_content)
+    print("Файл cookies.txt создан успешно.")
+else:
+    print("Переменная YOUTUBE_COOKIES не найдена. Проверьте настройки Railway.")
 
 # Настройки для yt-dlp
 ytdl_format_options = {
@@ -29,9 +30,8 @@ ytdl_format_options = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'auto',
-    'source_address': '0.0.0.0',  # Использовать IPv4
-    'cookiefile': 'youtube.txt',  # Укажите путь к файлу с куками
-
+    'source_address': '0.0.0.0',
+    'cookiefile': 'youtube.txt' if os.path.exists("youtube.txt") else None,  # Используйте куки, если файл существует
 }
 
 ffmpeg_options = {
