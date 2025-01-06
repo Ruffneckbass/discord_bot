@@ -1,2 +1,2 @@
 [phases.setup]
-nixpkgs = ["ffmpeg"]
+nixpkgs = ["glibc", "ffmpeg"]
