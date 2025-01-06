@@ -1,21 +1,23 @@
-FROM ubuntu:22.04
+# Используем базовый образ Ubuntu
+FROM ubuntu:20.04
 
-# Установить необходимые зависимости
-RUN apt-get update && apt-get install -y ffmpeg python3 python3-pip
+# Устанавливаем root пользователя
+USER root
+
+# Устанавливаем необходимые зависимости
+RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
-    ffmpeg \
-    gcc \
-    libffi-dev \
-    libc6
+    ffmpeg
 
-
-# Установить зависимости Python
+# Устанавливаем рабочую директорию
 WORKDIR /app
-COPY . /app
-RUN pip3 install -r requirements.txt
-COPY ./bin/ffmpeg /usr/local/bin/ffmpeg
-RUN chmod +x /usr/local/bin/ffmpeg
 
-# Запуск бота
+# Копируем файлы в контейнер
+COPY . .
+
+# Устанавливаем Python-зависимости
+RUN pip3 install -r requirements.txt
+
+# Команда для запуска приложения
 CMD ["python3", "ds_bot.py"]
