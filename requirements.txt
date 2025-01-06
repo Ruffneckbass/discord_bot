@@ -5,3 +5,4 @@ pynacl
 ffmpeg
 aiohttp
 cloudconvert
+requests
