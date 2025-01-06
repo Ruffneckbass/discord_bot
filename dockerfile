@@ -1,0 +1,18 @@
+FROM ubuntu:22.04
+
+# Установить необходимые зависимости
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    ffmpeg \
+    gcc \
+    libffi-dev \
+    libc6
+
+# Установить зависимости Python
+WORKDIR /app
+COPY . /app
+RUN pip3 install -r requirements.txt
+
+# Запуск бота
+CMD ["python3", "ds_bot.py"]

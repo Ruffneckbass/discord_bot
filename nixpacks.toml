@@ -1,9 +1,0 @@
-[phases.install]
-commands = [
-    "apt-get update",
-    "apt-get install -y ffmpeg"
-]
-[phases.nix]
-dependencies = [
-    "glibc"
-]
