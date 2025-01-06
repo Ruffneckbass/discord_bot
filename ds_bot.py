@@ -36,8 +36,7 @@ ytdl_format_options = {
 }
 
 ffmpeg_options = {
-    'options': '-vn',
-    'executable': '/usr/bin/ffmpeg'  # Укажите стандартный путь для Linux
+    'options': '-vn'
 }
 
 
