@@ -8,16 +8,14 @@ from dotenv import load_dotenv
 # Загрузка переменных окружения
 load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-COOKIES_CONTENT = os.getenv("YOUTUBE_COOKIES")
 
-# Создание файла cookies из переменной окружения
-cookies_file = "youtube_cookies.txt"
-if COOKIES_CONTENT:
-    with open(cookies_file, "w") as f:
-        f.write(COOKIES_CONTENT)
-    print("Cookies файл создан успешно.")
-else:
-    print("Cookies не найдены в переменных окружения.")
+
+# Создание файла youtube.txt из переменной окружения
+
+COOKIES_CONTENT = os.getenv("YOUTUBE_COOKIES")
+if cookies_content:
+    with open("youtube.txt", "w") as f:
+        f.write(cookies_content)
 
 # Настройки для yt-dlp
 ytdl_format_options = {
@@ -32,7 +30,8 @@ ytdl_format_options = {
     'no_warnings': True,
     'default_search': 'auto',
     'source_address': '0.0.0.0',  # Использовать IPv4
-    'cookiefile': cookies_file,  # Путь к файлу cookies
+    'cookiefile': 'youtube.txt',  # Укажите путь к файлу с куками
+
 }
 
 ffmpeg_options = {
