@@ -1,23 +1,13 @@
-# Используем базовый образ Ubuntu
-FROM ubuntu:20.04
+FROM python:3.10-slim
 
-# Устанавливаем root пользователя
-USER root
-
-# Устанавливаем необходимые зависимости
 RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    ffmpeg
+    ffmpeg \
+    libopus0 \
+    libffi-dev \
+    libnacl-dev \
+    && pip install --no-cache-dir discord.py yt-dlp python-dotenv pynacl
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
+COPY . /app
 
-# Копируем файлы в контейнер
-COPY . .
-
-# Устанавливаем Python-зависимости
-RUN pip3 install -r requirements.txt
-
-# Команда для запуска приложения
-CMD ["python3", "ds_bot.py"]
+CMD ["python", "ds_bot.py"]
