@@ -17,7 +17,6 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
 # Настройки для yt-dlp
-youtube_dl.utils.bug_reports_message = lambda: ''
 ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
@@ -29,9 +28,10 @@ ytdl_format_options = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'auto',
-    'source_address': '0.0.0.0',
-    'cookiefile': 'youtube.txt',
+    'source_address': '0.0.0.0',  # Use this if you encounter network issues
+    'cookiefile': '/app/youtube.txt',  # Убедитесь, что путь соответствует вашему файлу cookies
 }
+
 ffmpeg_options = {
     'options': '-vn',
     'executable': 'C:/ffmpeg-2025-01-02-git-0457aaf0d3-essentials_build/bin/ffmpeg.exe'
