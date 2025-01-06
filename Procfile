@@ -1,1 +1,1 @@
-worker: python ds_bot.py
+web: python ds_bot.py
