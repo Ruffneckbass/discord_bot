@@ -5,14 +5,19 @@ import yt_dlp as youtube_dl
 import os
 from dotenv import load_dotenv
 
-
 # Создание файла youtube.txt из переменной окружения
 cookies_content = os.getenv("YOUTUBE_COOKIES")
 if cookies_content:
     with open("youtube.txt", "w") as f:
         f.write(cookies_content)
 
-# Загрузка токена из файла .env
+# Проверка, создался ли файл cookies
+if os.path.exists("youtube.txt"):
+    print("Cookies file created successfully.")
+else:
+    print("Failed to create cookies file. Ensure the YOUTUBE_COOKIES variable is correctly set.")
+
+# Загрузка токена из переменных окружения
 load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
@@ -28,14 +33,12 @@ ytdl_format_options = {
     'quiet': True,
     'no_warnings': True,
     'default_search': 'auto',
-    'source_address': '0.0.0.0',  # Use this if you encounter network issues
-    'cookiefile': '/app/youtube.txt',  # Убедитесь, что путь соответствует вашему файлу cookies
+    'source_address': '0.0.0.0',  # Используем только IPv4
+    'cookiefile': 'youtube.txt',  # Используем cookies-файл
 }
-
 
 ffmpeg_options = {
     'options': '-vn',
-    'executable': 'C:/ffmpeg-2025-01-02-git-0457aaf0d3-essentials_build/bin/ffmpeg.exe'
 }
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
@@ -110,10 +113,13 @@ async def play(ctx, *, url):
         await ctx.invoke(join)
 
     async with ctx.typing():
-        player = await YTDLSource.from_url(url, loop=bot.loop, stream=True)
-        await song_queue.put(player)
+        try:
+            player = await YTDLSource.from_url(url, loop=bot.loop, stream=True)
+            await song_queue.put(player)
+            await ctx.send(f"Добавлено в очередь: {player.title}")
+        except Exception as e:
+            await ctx.send(f"Ошибка при добавлении трека: {str(e)}")
 
-    await ctx.send(f"Добавлено в очередь: {player.title}")
     if not ctx.voice_client.is_playing():
         bot.loop.create_task(music_player(ctx))
 
