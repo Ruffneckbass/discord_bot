@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 # Установить необходимые зависимости
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y ffmpeg python3 python3-pip
     python3 \
     python3-pip \
     ffmpeg \
