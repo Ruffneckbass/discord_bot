@@ -32,6 +32,7 @@ ytdl_format_options = {
     'cookiefile': '/app/youtube.txt',  # Убедитесь, что путь соответствует вашему файлу cookies
 }
 
+
 ffmpeg_options = {
     'options': '-vn',
     'executable': 'C:/ffmpeg-2025-01-02-git-0457aaf0d3-essentials_build/bin/ffmpeg.exe'
