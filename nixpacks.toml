@@ -1,2 +1,2 @@
-[dependencies]
-packages = ["ffmpeg", "python3"]
+[phases.setup]
+nixpkgs = ["ffmpeg"]

@@ -4,6 +4,17 @@ import asyncio
 import yt_dlp as youtube_dl
 import os
 from dotenv import load_dotenv
+import subprocess
+
+try:
+    result = subprocess.run(["ffmpeg", "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if result.returncode == 0:
+        print("FFmpeg доступен на сервере.")
+    else:
+        print("FFmpeg недоступен.")
+except FileNotFoundError:
+    print("FFmpeg не установлен.")
+
 
 # Загрузка переменных окружения
 load_dotenv()
@@ -35,7 +46,8 @@ ytdl_format_options = {
 }
 
 ffmpeg_options = {
-    'options': '-vn'
+    'options': '-vn',
+    'executable': '/usr/bin/ffmpeg'  # Укажите путь для Railway
 }
 
 
