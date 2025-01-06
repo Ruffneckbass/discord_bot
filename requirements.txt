@@ -3,4 +3,5 @@ yt-dlp
 python-dotenv
 pynacl
 ffmpeg
+aiohttp
 cloudconvert
