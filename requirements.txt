@@ -6,5 +6,6 @@ ffmpeg
 aiohttp
 cloudconvert
 requests
-ffmpeg-python
 flask
+py-cord
+ffmpeg-python
